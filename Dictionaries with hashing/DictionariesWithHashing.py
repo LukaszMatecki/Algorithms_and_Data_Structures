@@ -1,214 +1,182 @@
-# TABLICA HASZUJĄCA Z ŁAŃCUCHOWANIEM
-class TablicaHaszujacaLancuchowanie:
-    def __init__(self, rozmiar=10):
-        self.rozmiar = rozmiar
-        self.prog_obciazenia = 10  # Po przekroczeniu tego progu wykonujemy rehaszowanie
-        self.licznik = 0  # Liczba elementów w słowniku
-        self.tablica = [[] for _ in range(rozmiar)]
+class ChainingHashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.load_factor_threshold = 10
+        self.count = 0
+        self.table = [[] for _ in range(size)]
 
-    def _hash(self, klucz):
-        return hash(klucz) % self.rozmiar
+    def _hash(self, key):
+        return hash(key) % self.size
 
-    def _rehash(self, nowy_rozmiar):
-        nowa_tablica = [[] for _ in range(nowy_rozmiar)]
-        for lancuch in self.tablica:
-            for para in lancuch:
-                nowy_indeks = self._hash(para[0])
-                nowa_tablica[nowy_indeks].append(para)
-        self.tablica = nowa_tablica
-        self.rozmiar = nowy_rozmiar
+    def _rehash(self, new_size):
+        new_table = [[] for _ in range(new_size)]
+        for chain in self.table:
+            for pair in chain:
+                new_index = self._hash(pair[0])
+                new_table[new_index].append(pair)
+        self.table = new_table
+        self.size = new_size
 
-    def wstaw(self, klucz, wartosc):
-        if self.licznik / self.rozmiar >= self.prog_obciazenia:
-            self._rehash(self.rozmiar * 2)
+    def insert(self, key, value):
+        if self.count / self.size >= self.load_factor_threshold:
+            self._rehash(self.size * 2)
 
-        indeks = self._hash(klucz)
-        lancuch = self.tablica[indeks]
+        index = self._hash(key)
+        chain = self.table[index]
 
-        for para in lancuch:
-            if para[0] == klucz:
-                para[1] = wartosc
+        for pair in chain:
+            if pair[0] == key:
+                pair[1] = value
                 return
 
-        lancuch.append([klucz, wartosc])
-        self.licznik += 1
-        print(f"Wstawiono ({klucz}, {wartosc}) do indeksu {indeks}")
-        self.wydruk_tablicy()
+        chain.append([key, value])
+        self.count += 1
+        print(f"Inserted ({key}, {value}) at index {index}")
+        self.print_table()
 
-    def znajdz(self, klucz):
-        indeks = self._hash(klucz)
-        lancuch = self.tablica[indeks]
+    def find(self, key):
+        index = self._hash(key)
+        chain = self.table[index]
 
-        for para in lancuch:
-            if para[0] == klucz:
-                return para[1]
+        for pair in chain:
+            if pair[0] == key:
+                return pair[1]
 
         return None
 
-    def usun(self, klucz):
-        indeks = self._hash(klucz)
-        lancuch = self.tablica[indeks]
+    def remove(self, key):
+        index = self._hash(key)
+        chain = self.table[index]
 
-        for i, para in enumerate(lancuch):
-            if para[0] == klucz:
-                del lancuch[i]
-                self.licznik -= 1
-                print(f"Usunięto klucz {klucz} z indeksu {indeks}")
-                self.wydruk_tablicy()
+        for i, pair in enumerate(chain):
+            if pair[0] == key:
+                del chain[i]
+                self.count -= 1
+                print(f"Removed key {key} from index {index}")
+                self.print_table()
 
-                if self.rozmiar > 10 and self.licznik / self.rozmiar <= 0.2:
-                    self._rehash(self.rozmiar // 2)
+                if self.size > 10 and self.count / self.size <= 0.2:
+                    self._rehash(self.size // 2)
                 return
 
-    def wydruk_tablicy(self):
-        print("Tablica (łańcuchowanie):")
-        for i, lancuch in enumerate(self.tablica):
-            print(f"[{i}]: {lancuch}")
+    def print_table(self):
+        print("Hash Table (Chaining):")
+        for i, chain in enumerate(self.table):
+            print(f"[{i}]: {chain}")
         print()
 
 
-# TABLICA HASZUJĄCA – ADRESOWANIE OTWARTE O(m+n)
-class TablicaHaszujacaOtwarta:
-    def __init__(self, rozmiar=10):
-        self.rozmiar = rozmiar
-        self.prog_obciazenia = 0.7
-        self.licznik = 0
-        self.tablica = [None] * rozmiar
+class OpenAddressingHashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.load_factor_threshold = 0.7
+        self.count = 0
+        self.table = [None] * size
 
-    def _hash(self, klucz):
-        return hash(klucz) % self.rozmiar
+    def _hash(self, key):
+        return hash(key) % self.size
 
-    def _rehash(self, nowy_rozmiar):
-        nowa_tablica = [None] * nowy_rozmiar
-        stary_rozmiar = self.rozmiar
-        self.rozmiar = nowy_rozmiar
-        for element in self.tablica:
+    def _rehash(self, new_size):
+        new_table = [None] * new_size
+        old_size = self.size
+        self.size = new_size
+        for element in self.table:
             if element is not None:
-                indeks = self._hash(element[0])
-                while nowa_tablica[indeks] is not None:
-                    indeks = (indeks + 1) % nowy_rozmiar
-                nowa_tablica[indeks] = element
-        self.tablica = nowa_tablica
+                index = self._hash(element[0])
+                while new_table[index] is not None:
+                    index = (index + 1) % new_size
+                new_table[index] = element
+        self.table = new_table
 
-    def wstaw(self, klucz, wartosc):
-        if self.licznik / self.rozmiar >= self.prog_obciazenia:
-            self._rehash(self.rozmiar * 2)
+    def insert(self, key, value):
+        if self.count / self.size >= self.load_factor_threshold:
+            self._rehash(self.size * 2)
 
-        indeks = self._hash(klucz)
-        while self.tablica[indeks] is not None and self.tablica[indeks][0] != klucz:
-            indeks = (indeks + 1) % self.rozmiar
+        index = self._hash(key)
+        while self.table[index] is not None and self.table[index][0] != key:
+            index = (index + 1) % self.size
 
-        if self.tablica[indeks] is None:
-            self.licznik += 1
+        if self.table[index] is None:
+            self.count += 1
 
-        self.tablica[indeks] = (klucz, wartosc)
-        print(f"Wstawiono ({klucz}, {wartosc}) do indeksu {indeks}")
-        self.wydruk_tablicy()
+        self.table[index] = (key, value)
+        print(f"Inserted ({key}, {value}) at index {index}")
+        self.print_table()
 
-    def znajdz(self, klucz):
-        indeks = self._hash(klucz)
-        start = indeks
-        while self.tablica[indeks] is not None:
-            if self.tablica[indeks][0] == klucz:
-                return self.tablica[indeks][1]
-            indeks = (indeks + 1) % self.rozmiar
-            if indeks == start:
+    def find(self, key):
+        index = self._hash(key)
+        start = index
+        while self.table[index] is not None:
+            if self.table[index][0] == key:
+                return self.table[index][1]
+            index = (index + 1) % self.size
+            if index == start:
                 break
         return None
 
-    def usun(self, klucz):
-        indeks = self._hash(klucz)
-        start = indeks
-        while self.tablica[indeks] is not None:
-            if self.tablica[indeks][0] == klucz:
+    def remove(self, key):
+        index = self._hash(key)
+        start = index
+        while self.table[index] is not None:
+            if self.table[index][0] == key:
                 break
-            indeks = (indeks + 1) % self.rozmiar
-            if indeks == start:
+            index = (index + 1) % self.size
+            if index == start:
                 return
         else:
             return
 
-        # Usuwanie elementu i przesunięcie
-        print(f"\nUsuwamy klucz {klucz} z indeksu {indeks}")
-        self.tablica[indeks] = None
-        self.licznik -= 1
-        self.wydruk_tablicy()
+        print(f"\nRemoving key {key} from index {index}")
+        self.table[index] = None
+        self.count -= 1
+        self.print_table()
 
-        nastepny_indeks = (indeks + 1) % self.rozmiar
-        while self.tablica[nastepny_indeks] is not None:
-            klucz_przesun = self.tablica[nastepny_indeks][0]
-            wartosc_przesun = self.tablica[nastepny_indeks][1]
-            self.tablica[nastepny_indeks] = None
-            self.licznik -= 1
-            self.wstaw(klucz_przesun, wartosc_przesun)
-            nastepny_indeks = (nastepny_indeks + 1) % self.rozmiar
+        next_index = (index + 1) % self.size
+        while self.table[next_index] is not None:
+            key_to_reinsert = self.table[next_index][0]
+            value_to_reinsert = self.table[next_index][1]
+            self.table[next_index] = None
+            self.count -= 1
+            self.insert(key_to_reinsert, value_to_reinsert)
+            next_index = (next_index + 1) % self.size
 
-        # Opcjonalnie zmniejszamy tablicę
-        if self.rozmiar > 10 and self.licznik / self.rozmiar <= 0.2:
-            self._rehash(self.rozmiar // 2)
+        if self.size > 10 and self.count / self.size <= 0.2:
+            self._rehash(self.size // 2)
 
-    def wydruk_tablicy(self):
-        print("Tablica:", end=" ")
-        for i, elem in enumerate(self.tablica):
+    def print_table(self):
+        print("Hash Table:", end=" ")
+        for i, elem in enumerate(self.table):
             print(f"[{i}:{elem}]", end=" ")
         print("\n")
 
-# Test działania
+
 if __name__ == "__main__":
 
-    print("\nTEST: TablicaHaszujacaLancuchowanie")
-    lancuch = TablicaHaszujacaLancuchowanie()
-    lancuch.wstaw(5, "5")
-    lancuch.wstaw(11, "11")
-    lancuch.wstaw(15, "15")
-    lancuch.wstaw(25, "25")
-    lancuch.wstaw(35, "35")
-    #print(lancuch.znajdz(5))
-    #print(lancuch.znajdz(15))
-    #print(lancuch.znajdz(10))
-    lancuch.usun(5)
-    #print(lancuch.znajdz(5))
-    lancuch.wstaw(5, "5")
+    print("\nTEST: ChainingHashTable")
+    chaining = ChainingHashTable()
+    chaining.insert(5, "5")
+    chaining.insert(11, "11")
+    chaining.insert(15, "15")
+    chaining.insert(25, "25")
+    chaining.insert(35, "35")
+    chaining.remove(5)
+    chaining.insert(5, "5")
 
-    print("\nTEST: TablicaHaszujacaOtwarta")
-    mapa = TablicaHaszujacaOtwarta()
-    mapa.wstaw(10, "10")
-    mapa.wstaw(17, "17")
-    mapa.wstaw(30, "30")
-    mapa.wstaw(40, "40")
-    mapa.wstaw(50, "50")
-    mapa.wstaw(13, "13")
-    mapa.wstaw(27, "27")
-    print("\n--- STAN TABLICY PRZED USUNIĘCIEM ---")
-    mapa.wydruk_tablicy()
-    mapa.usun(17)
-    mapa.usun(30)
-    print("\n--- STAN TABLICY PO USUNIĘCIU 17 i 30 ---")
-    mapa.wydruk_tablicy()
-    mapa.wstaw(20, "20")
-    print("\n--- STAN TABLICY PO DODANIU 20 ---")
-    mapa.wydruk_tablicy()
-
-    # print("\nTEST: TablicaHaszujacaOtwarta")
-    # mapa = TablicaHaszujacaOtwarta()
-    # mapa.wstaw(10, "10")
-    # mapa.wstaw(17, "17")
-    # mapa.wstaw(30, "30")
-    # mapa.wstaw(40, "40")
-    # mapa.wstaw(50, "50")
-    # mapa.wstaw(13, "13")
-    # mapa.wstaw(14, "14")
-    # mapa.wstaw(15, "15")
-    # mapa.wstaw(16, "16")
-    # mapa.wstaw(55, "55")
-    # mapa.wstaw(27, "27")
-    # print("\n--- STAN TABLICY PRZED USUNIĘCIEM ---")
-    # mapa.wydruk_tablicy()
-    # mapa.usun(17)
-    # mapa.usun(30)
-    # mapa.usun(15)
-    # print("\n--- STAN TABLICY PO USUNIĘCIU 17 i 30 i 15 ---")
-    # mapa.wydruk_tablicy()
-    # mapa.wstaw(20, "20")
-    # print("\n--- STAN TABLICY PO DODANIU 20 ---")
-    # mapa.wydruk_tablicy()
+    print("\nTEST: OpenAddressingHashTable")
+    open_addressing = OpenAddressingHashTable()
+    open_addressing.insert(10, "10")
+    open_addressing.insert(17, "17")
+    open_addressing.insert(30, "30")
+    open_addressing.insert(40, "40")
+    open_addressing.insert(50, "50")
+    open_addressing.insert(13, "13")
+    open_addressing.insert(27, "27")
+    print("\n--- TABLE BEFORE REMOVAL ---")
+    open_addressing.print_table()
+    open_addressing.remove(17)
+    open_addressing.remove(30)
+    print("\n--- TABLE AFTER REMOVING 17 AND 30 ---")
+    open_addressing.print_table()
+    open_addressing.insert(20, "20")
+    print("\n--- TABLE AFTER INSERTING 20 ---")
+    open_addressing.print_table()
