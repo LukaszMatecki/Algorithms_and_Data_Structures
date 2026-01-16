@@ -1,143 +1,125 @@
-# Złożoność obliczeniowa czasowa pesymistyczna O(m * n)
-# Złożoność obliczeniowa czasowa optymistyczna O(m)
-def algorytm_naiwny(wzorzec, tekst):
-    dlugosc_tekstu = len(tekst)  # m
-    dlugosc_wzorca = len(wzorzec)  # n
-    wystapienia = []
+def naive_algorithm(pattern, text):
+    text_length = len(text)  # m
+    pattern_length = len(pattern)  # n
+    occurrences = []
 
-    for i in range(0, dlugosc_tekstu - dlugosc_wzorca + 1):
+    for i in range(0, text_length - pattern_length + 1):
         j = 0
-        while j < dlugosc_wzorca:
-            if tekst[i + j] != wzorzec[j]:
+        while j < pattern_length:
+            if text[i + j] != pattern[j]:
                 break
             j += 1
-            if j == dlugosc_wzorca:
-                wystapienia.append(i)
-    return wystapienia
+            if j == pattern_length:
+                occurrences.append(i)
+    return occurrences
 
-# Złożoność obliczeniowa czasowa pesymistyczna O(m * n)
-# Złożoność obliczeniowa czasowa optymistyczna O(m / n)
-def algorytm_sunday(wzorzec, tekst):
-    dlugosc_tekstu = len(tekst)
-    dlugosc_wzorca = len(wzorzec)
-    wystapienia = []
 
-    # Tworzymy tablicę przesunięć dla wszystkich możliwych znaków
-    przesuniecia = {}
-    for i in range(0, dlugosc_wzorca):
-        przesuniecia[wzorzec[i]] = dlugosc_wzorca - i
-        print(przesuniecia)
-    # Wyszukiwanie wzorca w tekście
-    i = 0
-    while i <= dlugosc_tekstu - dlugosc_wzorca:
-        j = 0
-        while j < dlugosc_wzorca:
-            if tekst[i + j] != wzorzec[j]:
-                break
-            j += 1
+def sunday_algorithm(pattern, text):
+    text_length = len(text)
+    pattern_length = len(pattern)
+    occurrences = []
 
-        # Dodanie pozycji wystapienia do tablicy/listy wystapien
-        if j == dlugosc_wzorca:
-            wystapienia.append(i)
-
-        # Przesuwanie wzorca - jesli znajdzie wartosc ze wzorca to przesuwa o tą wartosc w przeciwnym wypadku o dlugosc wzorca + 1
-        if i + dlugosc_wzorca < dlugosc_tekstu:
-            i += przesuniecia.get(tekst[i + dlugosc_wzorca], dlugosc_wzorca + 1)
-        else:
-            break
-    return wystapienia
-
-# Złożoność obliczeniowa czasowa pesymistyczna O(m * n)
-# Złożoność obliczeniowa czasowa optymistyczna O(m / n)
-def algorytm_sunday_pary(wzorzec, tekst):
-    dlugosc_tekstu = len(tekst)
-    dlugosc_wzorca = len(wzorzec)
-    wystapienia = []
-    przesuniecia = {}
-
-    for i in range(dlugosc_wzorca - 1):
-        para = wzorzec[i:i+2]
-        przesuniecia[para] = dlugosc_wzorca - i - 1 #tak obliczamy przesuniecia
-    # przesuniecia[wzorzec[-2:]] = 1
-
-    print("Wzorzec:", wzorzec)
-    print("Tablica przesunięć dla par liter:")
-    for para, przesuniecie in przesuniecia.items():
-        print(f"  {para} -> {przesuniecie}")
+    shifts = {}
+    for i in range(pattern_length):
+        shifts[pattern[i]] = pattern_length - i
+        print(shifts)
 
     i = 0
-    while i <= dlugosc_tekstu - dlugosc_wzorca:
+    while i <= text_length - pattern_length:
         j = 0
-        while j < dlugosc_wzorca:
-            if tekst[i + j] != wzorzec[j]:
+        while j < pattern_length:
+            if text[i + j] != pattern[j]:
                 break
             j += 1
 
-        if j == dlugosc_wzorca:
-            wystapienia.append(i)
+        if j == pattern_length:
+            occurrences.append(i)
 
-        if i + dlugosc_wzorca + 1 <= dlugosc_tekstu:
-            para_tekstu = tekst[i + dlugosc_wzorca - 1 : i + dlugosc_wzorca + 1]
-            i += przesuniecia.get(para_tekstu, dlugosc_wzorca)
+        # Shift pattern
+        if i + pattern_length < text_length:
+            i += shifts.get(text[i + pattern_length], pattern_length + 1)
         else:
             break
-    return wystapienia
+    return occurrences
 
-# Złożoność obliczeniowa czasowa optymistyczna i pesymistyczna O(m + n)
-def algorytm_mp(wzorzec, tekst):
-    dlugosc_wzorca = len(wzorzec)
-    tablica_prefikso_sufiksow = [0] * dlugosc_wzorca
+
+def sunday_algorithm_pairs(pattern, text):
+    text_length = len(text)
+    pattern_length = len(pattern)
+    occurrences = []
+    shifts = {}
+
+    for i in range(pattern_length - 1):
+        pair = pattern[i:i + 2]
+        shifts[pair] = pattern_length - i - 1
+
+    print("Pattern:", pattern)
+    print("Shift table for letter pairs:")
+    for pair, shift in shifts.items():
+        print(f"  {pair} -> {shift}")
+
+    i = 0
+    while i <= text_length - pattern_length:
+        j = 0
+        while j < pattern_length:
+            if text[i + j] != pattern[j]:
+                break
+            j += 1
+
+        if j == pattern_length:
+            occurrences.append(i)
+
+        if i + pattern_length + 1 <= text_length:
+            text_pair = text[i + pattern_length - 1 : i + pattern_length + 1]
+            i += shifts.get(text_pair, pattern_length)
+        else:
+            break
+    return occurrences
+
+
+def knuth_morris_pratt(pattern, text):
+    pattern_length = len(pattern)
+    prefix_suffix_table = [0] * pattern_length
     j = 0
 
-    # budowa tablicy prefiksów
-    for i in range(1, dlugosc_wzorca):
-        while j > 0 and wzorzec[i] != wzorzec[j]:
-            j = tablica_prefikso_sufiksow[j - 1]
-        if wzorzec[i] == wzorzec[j]:
+    for i in range(1, pattern_length):
+        while j > 0 and pattern[i] != pattern[j]:
+            j = prefix_suffix_table[j - 1]
+        if pattern[i] == pattern[j]:
             j += 1
-        tablica_prefikso_sufiksow[i] = j
+        prefix_suffix_table[i] = j
 
-    print("Tablica prefikso-sufiksow:", tablica_prefikso_sufiksow)
+    print("Prefix-suffix table:", prefix_suffix_table)
 
-    # wyszukiwanie wzorca w tekście
-    dopasowania = []
-    j = 0  # indeks we wzorcu
+    matches = []
+    j = 0
 
-    for i in range(len(tekst)):
-        while j > 0 and tekst[i] != wzorzec[j]:
-            j = tablica_prefikso_sufiksow[j - 1]
-        if tekst[i] == wzorzec[j]:
+    for i in range(len(text)):
+        while j > 0 and text[i] != pattern[j]:
+            j = prefix_suffix_table[j - 1]
+        if text[i] == pattern[j]:
             j += 1
-        if j == dlugosc_wzorca:
-            dopasowania.append(i - dlugosc_wzorca + 1)
-            j = tablica_prefikso_sufiksow[j - 1]
+        if j == pattern_length:
+            matches.append(i - pattern_length + 1)
+            j = prefix_suffix_table[j - 1]
 
-    return dopasowania
+    return matches
 
-tekst = "BACABADEABADDEAABCCABAD"
-wzorzec = "ABAD"
-# tekst = "aabcbcbabacabaacabababababacacacvababacacacababcbacbabababcaacacbcccababababababcbacbabcbacbacbabcbacbabcabaacacaaaabacbbcbbababababababbababccccacac"
-# wzorzec = "aba"
-# tekst = "abcaabcabcbabcbacbabcbcababcabcbbabcbacb"
-# wzorzec = "abcabc"
-# tekst = "ABCDXYZABCDXYZABCDXXXBXXXXYYXXXXXXXXYZABCDXYZABCDXYZXYAB"
-# wzorzec = "XYZAB"
-# tekst = "ABCADBABCABC"
-# wzorzec = "ABCABC"
-# tekst = "bacbababadababacambabacaddababacasdsd"
-# wzorzec = "ababaca"
 
-print("\nTekst ktory bedziemy przeszukiwac: " + tekst)
-print("Nasz wzorzec: " + wzorzec)
+text = "BACABADEABADDEAABCCABAD"
+pattern = "ABAD"
+
+print("\nText to search: " + text)
+print("Pattern: " + pattern)
 print("---------------------------------------\n")
-print("[Algorytm naiwy]:")
-print(algorytm_naiwny(wzorzec, tekst))
+print("[Naive Algorithm]:")
+print(naive_algorithm(pattern, text))
 print("\n---------------------------------------\n")
-print("[Algorytm Sunday'a]:")
-print(algorytm_sunday(wzorzec, tekst))
+print("[Sunday Algorithm]:")
+print(sunday_algorithm(pattern, text))
 print("\n---------------------------------------\n")
-print("[Algorytm Sunday'a (pary liter)]:")
-print(algorytm_sunday_pary(wzorzec, tekst))
+print("[Sunday Algorithm (Letter Pairs)]:")
+print(sunday_algorithm_pairs(pattern, text))
 print("\n---------------------------------------\n")
-print("[Algorytm MP]: ")
-print(algorytm_mp(wzorzec, tekst))
+print("[Knuth-Morris-Pratt Algorithm]:")
+print(knuth_morris_pratt(pattern, text))
