@@ -41,7 +41,6 @@ class MagicznaKula {
 
 class KnapsackSolver
 {
-    // Złożoność O(n * W + m), gdzie n to liczba przedmiotów, W to pojemność plecaka, m to liczba kul
     public static void rozwiazProblem(Plecak plecak, List<Przedmiot> przedmioty, MagicznaKula kule)
     {
         int liczbaPrzedmiotow = przedmioty.size();
