@@ -23,10 +23,6 @@ Każdy indeks w tablicy to „wiadro” (lista).
 Płaska struktura pamięci. Jeden slot = jeden element.
 
 - **Strategia:** jeśli miejsce jest zajęte, szukamy pierwszego wolnego `(index + 1)`  
-- **Ciekawostka (Active Cluster Maintenance):**  
-  Ten kod **nie używa „nagrobków” (flag DELETED)** przy usuwaniu.  
-  Gdy usuwamy element, algorytm wykonuje reinsercję kolejnych elementów klastra, aby „załatać dziurę”.  
-  Dzięki temu tablica pozostaje spójna.
 
 ## Porównanie implementacji
 
@@ -45,5 +41,13 @@ Sklonuj repozytorium:
 git clone https://github.com/twoj-user/hash-table-internals.git
 ```
 
-## Status
-Projekt stworzony wyłącznie w celach edukacyjnych.
+<div align="center">
+
+### Autorzy 
+
+| Role | Name | GitHub |
+|:---:|:---:|:---:|
+| **Developer** | **Łukasz Matecki** | [GitHub Profile](https://github.com/LukaszMatecki) |
+
+<br>
+<i>Created for educational purposes.</i>
