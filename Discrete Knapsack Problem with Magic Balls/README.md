@@ -64,7 +64,7 @@ przedmioty.add(new Przedmiot("Czasopismo naukowe", 2, 3));
 ```yaml
 Maksymalna wartość w plecaku (z kulami): <wartość>
 Użyto kul magicznych: <liczba_kul>
-Przedmioty w plecaku:
+Przedmioty w plecaku: ...
 Przedmiot: ...
 Waga: ...
 Wartość: ...
@@ -91,6 +91,3 @@ java problemPlecakowy
 
 <br>
 <i>Created for educational purposes.</i>
-
-
-KnapsackSolver.rozwiazProblem(p1, przedmioty, kule);
