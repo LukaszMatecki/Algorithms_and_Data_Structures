@@ -113,34 +113,14 @@ public class problemPlecakowy{
     public static void main(String[] args)
     {
         Plecak p1 = new Plecak(7);
-//        Plecak p2 = new Plecak(7);
-//        Plecak p3 = new Plecak(15);
         MagicznaKula kule = new MagicznaKula(5, 3);
 
         List<Przedmiot> przedmioty = new ArrayList<>();
-        // Przyjmujemy, że mamy dostępny tylko jeden egzemplarz każdego przedmiotu
         przedmioty.add(new Przedmiot("Encyklopedia zwierząt", 3, 2));
         przedmioty.add(new Przedmiot("Kartka świąteczna", 1, 2));
         przedmioty.add(new Przedmiot("Lusterko", 3, 4));
         przedmioty.add(new Przedmiot("Lampka", 4, 5));
         przedmioty.add(new Przedmiot("Czasopismo naukowe", 2, 3));
         KnapsackSolver.rozwiazProblem(p1, przedmioty, kule);
-//        System.out.println("\n---------------------------------------------------------------------");
-//        List<Przedmiot> przedmioty2 = new ArrayList<>();
-//        przedmioty2.add(new Przedmiot("Perkusja", 7, 5));
-//        przedmioty2.add(new Przedmiot("Magazyn naukowy", 1, 2));
-//        przedmioty2.add(new Przedmiot("Laptop", 3, 4));
-//        przedmioty2.add(new Przedmiot("Monitor", 4, 5));
-//        przedmioty2.add(new Przedmiot("Głośnik", 2, 3));
-//        KnapsackSolver.rozwiazProblem(p2, przedmioty2, kule);
-//        System.out.println("\n---------------------------------------------------------------------");
-//        KnapsackSolver.rozwiazProblem(p3, List.of(
-//            new Przedmiot("Gramofon", 12, 6),
-//            new Przedmiot("Książka", 2, 2),
-//            new Przedmiot("Kubek", 1, 1),
-//            new Przedmiot("Świeczka", 1, 2),
-//            new Przedmiot("Mikrofon", 4, 10),
-//            new Przedmiot("Monitor", 15, 4)
-//        ), kule);
     }
 }
