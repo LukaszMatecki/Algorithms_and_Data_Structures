@@ -2,7 +2,7 @@
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=flat&logo=java)
 ![CS Concepts](https://img.shields.io/badge/CS-Dynamic_Programming-purple?style=flat)
-![Status](https://img.shields.io/badge/Status-Edukacyjny-green?style=flat)
+![Status](https://img.shields.io/badge/Status-Educational-green?style=flat)
 
 Projekt edukacyjny w Javie przedstawiający wariant **problemu plecakowego (0/1)** z dodatkiem „magicznych kul”.
 
