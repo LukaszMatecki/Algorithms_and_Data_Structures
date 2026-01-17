@@ -1,62 +1,85 @@
-## Hash Table Duel: Chaining vs. Open Addressing
+# Hash Table Duel: Chaining vs. Open Addressing
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
-![CS Concepts](https://img.shields.io/badge/CS-Data_Structures-purple?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Educational-green?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat&logo=python)
+![CS Concepts](https://img.shields.io/badge/CS-Data_Structures-purple?style=flat)
+![Status](https://img.shields.io/badge/Status-Educational-green?style=flat)
 
-> **A deep-dive, bare-metal implementation of Hash Tables in Python. No `dict` shortcuts.**
+> **Surowa implementacja Tablic Mieszających w Pythonie. Bez użycia wbudowanego `dict`.**
 
-## ⚡ O Projekcie
+## O Projekcie
 
-To repozytorium to techniczny "poedynek" dwóch fundamentalnych strategii rozwiązywania kolizji w tablicach mieszających. Kod demonstruje, co dzieje się "pod maską" (under the hood) systemów bazodanowych i interpreterów języków programowania.
+To repozytorium to techniczne porównanie dwóch fundamentalnych strategii rozwiązywania kolizji. Kod pokazuje, co dzieje się "pod maską" systemów bazodanowych.
 
 Zaimplementowano od zera:
-1.  **Separate Chaining** (Metoda Łańcuchowa)
-2.  **Open Addressing** (Adresowanie Otwarte z próbkowaniem liniowym)
+1. **Separate Chaining** (Metoda Łańcuchowa)
+2. **Open Addressing** (Adresowanie Otwarte z próbkowaniem liniowym)
 
----
-
-## 🏗️ Architektura i Algorytmy
+## Architektura i Algorytmy
 
 ### 1. ChainingHashTable
-Każdy slot w tablicy jest "wiadrem" (listą).
+Każdy indeks w tablicy to "wiadro" (lista).
 * **Strategia:** Nieskończona pojemność pojedynczego indeksu.
-* **Kolizja:** Elementy o tym samym hashu lądują w tej samej liście.
-* **Load Factor:** Może przekraczać 1.0 (więcej elementów niż slotów).
+* **Kolizja:** Elementy o tym samym hashu są dopisywane do listy.
+* **Load Factor:** Może przekraczać 1.0.
 
-### 2. OpenAddressingHashTable (Linear Probing)
+### 2. OpenAddressingHashTable
 Płaska struktura pamięci. Jeden slot = jeden element.
 * **Strategia:** Jeśli miejsce jest zajęte, szukamy pierwszego wolnego `(index + 1)`.
-* ** 🔥 Killer Feature: Active Cluster Maintenance**
-    W przeciwieństwie do typowych implementacji akademickich, ten kod **nie używa "nagrobków" (Tombstones)** przy usuwaniu.
-    
-    > **Jak to działa?**
-    > Gdy usuwamy element, powstaje "dziura". Algorytm sprawdza kolejne elementy w klastrze i wykonuje **re-insert**, aby przesunąć je w optymalne miejsca. Dzięki temu operacja `find` jest szybsza, bo nie musi przeskakiwać przez flagi `DELETED`.
+* **Ciekawostka (Active Cluster Maintenance):**
+  Ten kod **nie używa "nagrobków" (flag DELETED)** przy usuwaniu. Gdy usuwamy element, algorytm przesuwa (wykonuje re-insert) kolejne elementy klastra, aby załatać "dziurę". Dzięki temu tablica jest zawsze spójna.
 
----
-
-## ⚙️ Porównanie Implementacji
+## Porównanie Implementacji
 
 | Cecha | Chaining | Open Addressing |
 | :--- | :--- | :--- |
 | **Rozwiązywanie Kolizji** | Lista (Bucket) | Linear Probing |
-| **Wydajność Pamięci** | Overhead na wskaźniki list | Brak overheadu (płaska tablica) |
-| **Cache Locality** | Średnia (skakanie po pamięci) | Wysoka (dane są obok siebie) |
-| **Limit elementów** | Ograniczony tylko RAM-em | Ograniczony rozmiarem tablicy |
-| **Próg Resize (Góra)** | Load Factor ≥ 10.0 | Load Factor ≥ 0.7 |
+| **Wydajność Pamięci** | Narzut na listy | Brak narzutu (płaska tablica) |
+| **Cache Locality** | Średnia | Wysoka (dane obok siebie) |
+| **Próg Resize** | Load Factor ≥ 10.0 | Load Factor ≥ 0.7 |
 
----
+## Przegląd Kodu
 
-## 💻 Przegląd Kodu
+### 1. Skalowanie (Rehashing)
+Różne strategie dla różnych potrzeb:
 
-### Inteligentne Skalowanie (Rehashing)
-Obie klasy automatycznie zarządzają pamięcią, ale mają różne progi wyzwalania:
-
-```python
-# Chaining: Bardziej "zrelaksowany", pozwala na długie łańcuchy
+``python
+# Chaining: Pozwala na długie łańcuchy
 if self.count / self.size >= 10:
     self._rehash(self.size * 2)
 
-# Open Addressing: Musi być luźny, aby unikać klasteryzacji
+# Open Addressing: Musi być luźny, by unikać klastrów
 if self.count / self.size >= 0.7:
     self._rehash(self.size * 2)
+
+# ...usunięcie elementu...
+next_index = (index + 1) % self.size
+
+# Przesuwamy kolejne elementy, aby załatać dziurę
+while self.table[next_index] is not None:
+    key, val = self.table[next_index]
+    self.table[next_index] = None
+    self.count -= 1
+    self.insert(key, val) # Re-insert znajdzie optymalne miejsce
+    next_index = (next_index + 1) % self.size
+
+Kod nie wymaga instalacji żadnych bibliotek.
+
+Sklonuj repozytorium:
+
+Bash
+
+git clone [https://github.com/twoj-user/hash-table-internals.git](https://github.com/twoj-user/hash-table-internals.git)
+Uruchom skrypt:
+
+Bash
+
+python hash_tables.py
+Przykładowy Output
+Plaintext
+
+TEST: OpenAddressingHashTable
+Inserted (10, 10) at index 0
+Inserted (30, 30) at index 1  <-- Kolizja z indexem 0
+Removing key 17 from index 7
+Hash Table: [0:(10, '10')] [1:(30, '30')] ...
+Kod stworzony w celach edukacyjnych.
