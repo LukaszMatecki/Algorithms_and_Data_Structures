@@ -1,4 +1,4 @@
-# Drzewo Przedziałowe do Obliczania Czasu Trafienia Celów w Javie
+# Drzewo Przedziałowe do obliczania czasu trafienia celów w Javie
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=flat&logo=java)
 ![CS Concepts](https://img.shields.io/badge/CS-Data_Structures-purple?style=flat)
@@ -10,7 +10,7 @@ Projekt edukacyjny w Javie przedstawiający implementację **segment tree** (drz
 
 ## Opis
 
-**CannonTree** to struktura danych przechowująca:
+**Drzewo Przedziałowe** to struktura danych przechowująca:
 
 - Liczbę trafień na poszczególnych celach (`sum`)  
 - Czas ostatniego trafienia (`last_hit_time`)  
