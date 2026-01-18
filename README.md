@@ -40,10 +40,10 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 ### 4. Dopasowywanie wzorców w tekście
 
 - **Algorytmy:**
-  1) **Naive Algorithm** – sprawdzanie wzorca w każdym możliwym przesunięciu.
-  2) **Sunday Algorithm** – optymalizacja przesunięć wzorca w oparciu o znak następujący po oknie dopasowania.
-  3) **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
-  4) **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
+  - **Naive Algorithm** – sprawdzanie wzorca w każdym możliwym przesunięciu.
+  - **Sunday Algorithm** – optymalizacja przesunięć wzorca w oparciu o znak następujący po oknie dopasowania.
+  - **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
+  - **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
 - **Język:** Python  
 - [Przejdź do kodu](./Pattern_Matching_Problem/PatternMatchingProblemSunday.py)  
 
