@@ -17,7 +17,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
   - Separate Chaining (łańcuchowanie)
   - Open Addressing (adresowanie otwarte z linear probing)
 - **Język:** Python  
-- [Przejdź do kodu](./Dictionaries with hashing/DictionariesWithHashing.py)  
+- [Przejdź do kodu](./src/DictionariesWithHashing.py)  
 
 ---
 
@@ -25,7 +25,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Rozwiązanie problemu plecakowego z dynamicznym programowaniem i modyfikatorami wartości dzięki magicznym kulom.  
 - **Język:** Java  
-- [Przejdź do kodu](.//problemPlecakowy.java)  
+- [Przejdź do kodu](./src/problemPlecakowy.java)  
 
 ---
 
@@ -33,7 +33,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Implementacja algorytmu Longest Common Subsequence do znajdowania różnic między dwoma tekstami.  
 - **Język:** Python  
-- [Przejdź do kodu](.//LongestCommonSubsequence.py)  
+- [Przejdź do kodu](./src/LongestCommonSubsequence.py)  
 
 ---
 
@@ -45,7 +45,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
   3) **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
   4) **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
 - **Język:** Python  
-- [Przejdź do kodu](.//PatternMatchingProblemSunday.py)  
+- [Przejdź do kodu](./src/PatternMatchingProblemSunday.py)  
 
 ---
 
@@ -53,7 +53,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Drzewo przedziałowe przechowujące liczbę trafień w celach i obliczający czas ostatniego trafienia. Pozwala na szybkie aktualizacje i zapytania w czasie logarytmicznym. 
 - **Język:** Java  
-- [Przejdź do kodu](.//drzewaPrzedzialowe.java)  
+- [Przejdź do kodu](./src/drzewaPrzedzialowe.java)  
 
 ---
 
