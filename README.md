@@ -17,7 +17,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
   - Separate Chaining (łańcuchowanie)
   - Open Addressing (adresowanie otwarte z linear probing)
 - **Język:** Python  
-- [Przejdź do kodu](./Algorithms_and_Data_Structures/Dictionaries_with_hashing/DictionariesWithHashing.py)
+- [Przejdź do kodu](./Dictionaries_with_hashing/DictionariesWithHashing.py)
 
 ---
 
@@ -33,7 +33,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Implementacja algorytmu Longest Common Subsequence do znajdowania różnic między dwoma tekstami.  
 - **Język:** Python  
-- [Przejdź do kodu](../Algorithms_and_Data_Structures/Discrete_Knapsack_Problem_Magic_Balls/LongestCommonSubsequence.py)  
+- [Przejdź do kodu](./Discrete_Knapsack_Problem_Magic_Balls/LongestCommonSubsequence.py)  
 
 ---
 
