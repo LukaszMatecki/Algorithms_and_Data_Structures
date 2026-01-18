@@ -17,48 +17,43 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
   - Separate Chaining (łańcuchowanie)
   - Open Addressing (adresowanie otwarte z linear probing)
 - **Język:** Python  
-- **Cel:** Pokazanie działania kolizji, usuwania elementów i rehashingu.  
-- [Przejdź do kodu](./DictionariesWithHashing.py)  
+- [Przejdź do kodu](./Dictionaries with hashing/DictionariesWithHashing.py)  
 
 ---
 
 ### 2. Problem Plecakowy z kulami magicznymi
 
-- **Opis:** Rozwiązanie problemu plecakowego z dynamicznym programowaniem i modyfikatorami wartości dzięki kulom magicznym.  
+- **Opis:** Rozwiązanie problemu plecakowego z dynamicznym programowaniem i modyfikatorami wartości dzięki magicznym kulom.  
 - **Język:** Java  
-- **Cel:** Demonstracja dynamicznego programowania oraz dodatkowych ograniczeń.  
-- [Przejdź do kodu](./problemPlecakowy.java)  
+- [Przejdź do kodu](.//problemPlecakowy.java)  
 
 ---
 
 ### 3. Porównywanie tekstów (LCS)
 
-- **Opis:** Implementacja Longest Common Subsequence do znajdowania różnic między dwoma tekstami.  
+- **Opis:** Implementacja algorytmu Longest Common Subsequence do znajdowania różnic między dwoma tekstami.  
 - **Język:** Python  
-- **Cel:** Narzędzie do porównywania plików, np. w systemach kontroli wersji.  
-- [Przejdź do kodu](./LongestCommonSubsequence.py)  
+- [Przejdź do kodu](.//LongestCommonSubsequence.py)  
 
 ---
 
 ### 4. Dopasowywanie wzorców w tekście
 
 - **Algorytmy:**
-  1. **Naive Algorithm** – sprawdzanie wzorca w każdym możliwym przesunięciu.
-  2. **Sunday Algorithm** – optymalizacja przesunięć wzorca w oparciu o znak następujący po oknie dopasowania.
-  3. **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
-  4. **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
+  1) **Naive Algorithm** – sprawdzanie wzorca w każdym możliwym przesunięciu.
+  2) **Sunday Algorithm** – optymalizacja przesunięć wzorca w oparciu o znak następujący po oknie dopasowania.
+  3) **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
+  4) **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
 - **Język:** Python  
-- **Cel:** Porównanie klasycznych algorytmów wyszukiwania wzorca.  
-- [Przejdź do kodu](./PatternMatchingProblemSunday.py)  
+- [Przejdź do kodu](.//PatternMatchingProblemSunday.py)  
 
 ---
 
-### 5. CannonTree – Drzewo przedziałowe do czasu trafień celów
+### 5. Drzewo przedziałowe do czasu trafień celów
 
-- **Opis:** Segment tree przechowujący liczbę trafień w celach i obliczający czas ostatniego trafienia. Pozwala na szybkie aktualizacje i zapytania w czasie O(log n).  
+- **Opis:** Drzewo przedziałowe przechowujące liczbę trafień w celach i obliczający czas ostatniego trafienia. Pozwala na szybkie aktualizacje i zapytania w czasie logarytmicznym. 
 - **Język:** Java  
-- **Cel:** Demonstracja drzewa przedziałowego i agregacji wartości w czasie rzeczywistym.  
-- [Przejdź do kodu](./drzewaPrzedzialowe.java)  
+- [Przejdź do kodu](.//drzewaPrzedzialowe.java)  
 
 ---
 
