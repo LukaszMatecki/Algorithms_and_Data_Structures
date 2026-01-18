@@ -27,10 +27,8 @@ file_1 = "file_1.txt"
 file_2 = "file_2.txt"
 ```
 
-2. Zaimportuj funkcję print_diff i wywołaj ją:
+2. Dzięki funkcji print_diff i jej wywołaniu otrzymujemy wynik:
 ```sh
-file_1 = "file_1.txt"
-file_2 = "file_2.txt"
 print_diff(file_1, file_2)
 ```
 3. Wynik pokazuje:
