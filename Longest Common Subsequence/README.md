@@ -1,4 +1,4 @@
-# Narzędzie do porównywania tekstów z użyciem LCS
+# Narzędzie do porównywania tekstów z użyciem algorytmu LCS
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat&logo=python)
 ![CS Concepts](https://img.shields.io/badge/CS-Algorithms-purple?style=flat)
@@ -47,9 +47,9 @@ Oba pliki wejściowe muszą być zwykłymi plikami tekstowymi.
 Porównanie odbywa się linia po linii. Aby porównywać słowa lub znaki, kod należy zmodyfikować.
 Projekt przeznaczony do celów edukacyjnych i małych/średnich plików tekstowych.
 
-### Przykładowy wynik
+## Przykładowy wynik
 
-## Pliki:
+### Pliki:
 
 ```sh
 file_1.txt
@@ -68,7 +68,7 @@ To jest przykład
 Do widzenia
 ```
 
-## Wynik:
+### Wynik:
 ```txt 
   Hello World
 - To jest test
