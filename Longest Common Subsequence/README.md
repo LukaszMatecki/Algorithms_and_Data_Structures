@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat&logo=python)
 ![CS Concepts](https://img.shields.io/badge/CS-Algorithms-purple?style=flat)
-![Status](https://img.shields.io/badge/Status-Edukacyjny-green?style=flat)
+![Status](https://img.shields.io/badge/Status-Educational-green?style=flat)
 
 Projekt dostarcza prostą **użyteczną funkcję do porównywania plików tekstowych** opartą na algorytmie **Longest Common Subsequence (LCS)**. Przydatna do wizualizacji różnic między dwiema wersjami dokumentu lub pliku z kodem, podobnie jak w systemach kontroli wersji (np. Git) lub w narzędziach typu diff.
 
@@ -49,26 +49,21 @@ Projekt przeznaczony do celów edukacyjnych i małych/średnich plików tekstowy
 
 ## Przykładowy wynik
 
-### Pliki:
-
-```sh
-file_1.txt
-```
+### Zawartość pliku 1:
 ```txt
 Hello World
 To jest test
 Do widzenia
 ```
-```sh
-file_2.txt
-```
+
+### Zawartość pliku 2:
 ```txt
 Hello World
 To jest przykład
 Do widzenia
 ```
 
-### Wynik:
+## Wynik:
 ```txt 
   Hello World
 - To jest test
