@@ -1,4 +1,4 @@
-# CannonTree: Drzewo Przedziałowe do Obliczania Czasu Trafienia Celów w Javie
+# Drzewo Przedziałowe do Obliczania Czasu Trafienia Celów w Javie
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=flat&logo=java)
 ![CS Concepts](https://img.shields.io/badge/CS-Data_Structures-purple?style=flat)
