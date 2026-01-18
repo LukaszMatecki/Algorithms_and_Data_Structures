@@ -5,49 +5,60 @@
 ![CS Concepts](https://img.shields.io/badge/CS-Algorithms-purple?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Educational-green?style=for-the-badge)
 
-Repozytorium edukacyjne prezentujące różne klasyczne algorytmy do dopasowywania wzorców w tekście oraz struktur danych, takich jak segment tree i problem plecakowy.
+Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury danych w Pythonie i Javie.
 
 ---
 
 ## Algorytmy
 
-### 1. Porównywanie tekstów (LCS)
+### 1. Tablica z haszowaniem: Chaining vs Open Addressing
+
+- **Opis:** Implementacja tablic z haszowaniem w Pythonie z porównanie dwóch strategii rozwiązywania kolizji:
+  - Separate Chaining (łańcuchowanie)
+  - Open Addressing (adresowanie otwarte z linear probing)
+- **Język:** Python  
+- **Cel:** Pokazanie działania kolizji, usuwania elementów i rehashingu.  
+- [Przejdź do kodu](./DictionariesWithHashing.py)  
+
+---
+
+### 2. Problem Plecakowy z kulami magicznymi
+
+- **Opis:** Rozwiązanie problemu plecakowego z dynamicznym programowaniem i modyfikatorami wartości dzięki kulom magicznym.  
+- **Język:** Java  
+- **Cel:** Demonstracja dynamicznego programowania oraz dodatkowych ograniczeń.  
+- [Przejdź do kodu](./problemPlecakowy.java)  
+
+---
+
+### 3. Porównywanie tekstów (LCS)
 
 - **Opis:** Implementacja Longest Common Subsequence do znajdowania różnic między dwoma tekstami.  
 - **Język:** Python  
 - **Cel:** Narzędzie do porównywania plików, np. w systemach kontroli wersji.  
-- [Przejdź do kodu LCS](./lcs_diff.py)  
+- [Przejdź do kodu](./LongestCommonSubsequence.py)  
 
 ---
 
-### 2. Dopasowywanie wzorców w tekście
+### 4. Dopasowywanie wzorców w tekście
 
 - **Algorytmy:**
   1. **Naive Algorithm** – sprawdzanie wzorca w każdym możliwym przesunięciu.
   2. **Sunday Algorithm** – optymalizacja przesunięć wzorca w oparciu o znak następujący po oknie dopasowania.
   3. **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
-  4. **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.  
+  4. **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
 - **Język:** Python  
 - **Cel:** Porównanie klasycznych algorytmów wyszukiwania wzorca.  
-- [Przejdź do kodu wzorców](./string_matching.py)  
+- [Przejdź do kodu](./PatternMatchingProblemSunday.py)  
 
 ---
 
-### 3. Problem Plecakowy z kulami magicznymi
+### 5. CannonTree – Drzewo przedziałowe do czasu trafień celów
 
-- **Opis:** Rozwiązanie problemu plecakowego z dodatkowym mnożnikiem wartości przedmiotów dzięki kulom magicznym.  
+- **Opis:** Segment tree przechowujący liczbę trafień w celach i obliczający czas ostatniego trafienia. Pozwala na szybkie aktualizacje i zapytania w czasie O(log n).  
 - **Język:** Java  
-- **Cel:** Demonstracja dynamicznego programowania oraz dodatkowych ograniczeń i modyfikatorów.  
-- [Przejdź do kodu problemu plecakowego](./knapsack_magic.java)  
-
----
-
-### 4. CannonTree – Drzewo Przedziałowe do czasu trafień celów
-
-- **Opis:** Segment tree przechowujący liczbę trafień w celach i obliczający czas ostatniego trafienia.  
-- **Język:** Java  
-- **Cel:** Szybkie aktualizacje i zapytania w czasie O(log n).  
-- [Przejdź do kodu CannonTree](./CannonTree.java)  
+- **Cel:** Demonstracja drzewa przedziałowego i agregacji wartości w czasie rzeczywistym.  
+- [Przejdź do kodu](./drzewaPrzedzialowe.java)  
 
 ---
 
