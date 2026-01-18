@@ -61,7 +61,6 @@ def print_diff(file1, file2):
     print("\nLCS:", length)
 
 
-# Usage
 file_1 = "file_1.txt"
 file_2 = "file_2.txt"
 print_diff(file_1, file_2)
