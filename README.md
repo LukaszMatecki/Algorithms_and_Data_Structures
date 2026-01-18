@@ -25,7 +25,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Rozwiązanie problemu plecakowego z dynamicznym programowaniem i modyfikatorami wartości dzięki magicznym kulom.  
 - **Język:** Java  
-- [Przejdź do kodu](./Algorithms_and_Data_Structures/   /problemPlecakowy.java)  
+- [Przejdź do kodu](./Discrete_Knapsack_Problem_Magic_Balls/problemPlecakowy.java)  
 
 ---
 
@@ -33,7 +33,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Implementacja algorytmu Longest Common Subsequence do znajdowania różnic między dwoma tekstami.  
 - **Język:** Python  
-- [Przejdź do kodu](./Discrete_Knapsack_Problem_Magic_Balls/LongestCommonSubsequence.py)  
+- [Przejdź do kodu](./Longest_Common_Subsequence/LongestCommonSubsequence.py)  
 
 ---
 
@@ -45,7 +45,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
   3) **Sunday Algorithm (Pair Shifts)** – rozszerzenie algorytmu Sunday na pary liter.
   4) **Knuth-Morris-Pratt (KMP)** – użycie tablicy prefiks-sufiks do efektywnego wyszukiwania wzorca.
 - **Język:** Python  
-- [Przejdź do kodu](./Algorithms_and_Data_Structures/ /PatternMatchingProblemSunday.py)  
+- [Przejdź do kodu](./Pattern_Matching_Problem/PatternMatchingProblemSunday.py)  
 
 ---
 
@@ -53,7 +53,7 @@ Repozytorium edukacyjne prezentujące różne klasyczne algorytmy i struktury da
 
 - **Opis:** Drzewo przedziałowe przechowujące liczbę trafień w celach i obliczający czas ostatniego trafienia. Pozwala na szybkie aktualizacje i zapytania w czasie logarytmicznym. 
 - **Język:** Java  
-- [Przejdź do kodu](./Algorithms_and_Data_Structures/  /drzewaPrzedzialowe.java)  
+- [Przejdź do kodu](./Segment_Trees/drzewaPrzedzialowe.java)  
 
 ---
 
