@@ -67,5 +67,3 @@ After updating index 2 to 3: 11
 
 <br>
 <i>Created for educational purposes.</i>
-cannon.update(2, 3);
-System.out.println("After updating index 2 to 3: " + cannon.getLastHitTime());
