@@ -70,3 +70,14 @@ Do widzenia
 + To jest przykład
   Do widzenia
 ```
+
+<div align="center">
+
+### Autorzy 
+
+| Role | Name | GitHub |
+|:---:|:---:|:---:|
+| **Developer** | **Łukasz Matecki** | [GitHub Profile](https://github.com/LukaszMatecki) |
+
+<br>
+<i>Created for educational purposes.</i>
