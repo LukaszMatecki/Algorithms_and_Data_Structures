@@ -1,6 +1,6 @@
 def naive_algorithm(pattern, text):
-    text_length = len(text)  # m
-    pattern_length = len(pattern)  # n
+    text_length = len(text)
+    pattern_length = len(pattern)
     occurrences = []
 
     for i in range(0, text_length - pattern_length + 1):
@@ -35,7 +35,6 @@ def sunday_algorithm(pattern, text):
         if j == pattern_length:
             occurrences.append(i)
 
-        # Shift pattern
         if i + pattern_length < text_length:
             i += shifts.get(text[i + pattern_length], pattern_length + 1)
         else:
